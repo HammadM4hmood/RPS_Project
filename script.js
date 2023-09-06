@@ -1,47 +1,45 @@
-const playerChoice = prompt("Make a choice between Rock, Paper, or Scissors: ");
+const getComputerChoice = () => {
+  const compNumber = Math.floor(Math.random() * 3 + 1);
 
-playerChoice.toLowerCase;
+  if (compNumber == 1) {
+    return "Rock";
+  } else if (compNumber == 2) {
+    return "Paper";
+  } else {
+    return "Scissors";
+  }
+};
 
-function getComputerChoice(choices) {
-  return choices[Math.floor(Math.random() * choices.length)];
-}
-
-var choices = ["rock", "paper", "scissors"];
-
-// create a function for a round of rock, paper, scissors
-// the function has 2 parameters "playerSelection" and "computerSelection"
-function playRound(playerSelection, computerSelection) {
-  // if the player choice and the computer choice are the same than return draw
-  // do this by making playerSelection == to the computerselection
+const playRound = (playerSelection, computerSelection) => {
   if (playerSelection === computerSelection) {
-    return "It's a Tie";
-  }
-  // if the player wins then return "You Won! x beats x"
-  // if the player lost return "You lost x beats x"
-  // check this by see if playerSelection equals rock, paper, or scissors, then see if the computerSelection equals rock, paper, or scissors
-  // If the player won the battle return "You Won" else return "You Lost"
-  else if (computerSelection === "scissors") {
-    if (playerSelection === "rock") {
+    return "Tie";
+  } else if (playerSelection == "Rock") {
+    if (computerSelection == "Scissors") {
       return "You Won!";
     } else {
-      return "You Lost";
+      return "You Lost!";
     }
-  } else if (computerSelection === "scissors") {
-    if (playerSelection === "paper") {
+  } else if (playerSelection == "Paper") {
+    if (computerSelection == "Rock") {
       return "You Won!";
     } else {
-      return "You Lost";
+      return "You Lost!";
     }
-  } else if (computerSelection === "paper") {
-    if (playerSelection === "scissors") {
-      return "You Won";
+  } else if (playerSelection == "Scissors") {
+    if (computerSelection == "Paper") {
+      return "You Won!";
     } else {
-      return "You Lost";
+      return "You Lost!";
     }
   }
-}
+};
 
-const playerSelection = playerChoice;
-const computerSelection = getComputerChoice(choices);
+const playerSelection = prompt("Chose between Rock, Paper, Scissors: ");
 
-console.log(playRound(playerSelection, computerSelection));
+let game = () => {
+  for (let i = 0; i <= 4; i++) {
+    console.log(playRound(playerSelection, getComputerChoice));
+  }
+};
+
+game();
